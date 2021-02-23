@@ -1,6 +1,6 @@
 ## Command Line Calendar
 
-With this basic calendar, the user will be able to choose to:
+With this basic calendar, the user can choose to:
 * view the calendar with `V`
 * add an event with `A`
 * update an existing event `U`
