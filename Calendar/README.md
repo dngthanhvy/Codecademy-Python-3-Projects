@@ -1,8 +1,8 @@
 ## Command Line Calendar
 
 With this basic calendar, the user will be able to choose to:
-* view the calendar
-* add an event
-* update an existing event
-* delete an existing event
+* view the calendar with `V`
+* add an event with `A`
+* update an existing event `U`
+* delete an existing event `D`
 
