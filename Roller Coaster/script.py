@@ -57,7 +57,24 @@ def bar_num_inversions(park_name, df_coaster):
     plt.title('Number of inversions per coaster at {}'.format(park_name))
     plt.show()
 
+
+def pie_chart_coasters(df_coaster):
+    operating = df_coaster[df_coaster.status == 'status.operating']
+    closed = df_coaster[df_coaster.status == 'status.closed.definitely']
+    operating_perc = round(100*len(operating)/(len(operating)+len(closed)), 1)
+    closed_perc = 100 -operating_perc
+
+    plt.pie([operating_perc, closed_perc], labels=['Operating', 'Closed'], autopct='%1.2f%%')
+    plt.show()
+
+
+def scatter_2columns(column_x, column_y, df_coaster):
+    plt.scatter(df_coaster[column_x], df_coaster[column_y])
+    plt.title('Scatter plot of {} vs {}'.format(column_y, column_x))
+    plt.xlabel('{}'.format(column_x))
+    plt.ylabel('{}'.format(column_y))
+    plt.show()
+
 # ==============================================================
 # MAIN CALLS
 # ==============================================================
-bar_num_inversions('Parc Asterix', roller_coasters)
