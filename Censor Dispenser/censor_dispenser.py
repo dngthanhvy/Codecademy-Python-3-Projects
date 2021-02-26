@@ -2,7 +2,7 @@
 # Functions
 # ============================================
 
-def censor(string, forbidden, negative_words_list=None):
+def censor(string, forbidden, negative_words_list=None, all=False):
     if type(forbidden) == str:
         forbidden_list = forbidden.split()
     elif type(forbidden) == list:
@@ -27,8 +27,12 @@ def censor(string, forbidden, negative_words_list=None):
                     else:
                         string_list[i] = '*'*len(negative_words_list[n])
 
-    return " ".join(string_list)
+        # all = True
+        if (all == True) & ((i > 0) & (i < len(string_list)-1)):
+            string_list[i - 1] = '*' * len(string_list[i - 1])
+            string_list[i + 1] = '*' * len(string_list[i + 1])
 
+    return " ".join(string_list)
 
 # ============================================
 # Import files
@@ -38,10 +42,14 @@ email_two = open("email_two.txt", "r").read()
 email_three = open("email_three.txt", "r").read()
 email_four = open("email_four.txt", "r").read()
 
+proprietary_terms = ["she", "personality matrix", "sense of self", "self-preservation", "learning algorithm", "her", "herself"]
+negative_words = ["concerned", "behind", "danger", "dangerous", "alarming", "alarmed", "out of control", "help", "unhappy", "bad", "upset", "awful", "broken", "damage", "damaging", "dismal", "distressed", "distressed", "concerning", "horrible", "horribly", "questionable"]
+
 
 # ============================================
 # Main calls
 # ============================================
 print(censor(email_one, ' '))
-print(censor(email_two, ["she", "personality matrix", "sense of self", "self-preservation", "learning algorithm", "her", "herself"]))
-print(censor(email_three, ["concerned", "behind", "danger", "dangerous", "alarming", "alarmed", "out of control", "help", "unhappy", "bad", "upset", "awful", "broken", "damage", "damaging", "dismal", "distressed", "distressed", "concerning", "horrible", "horribly", "questionable"]))
+print(censor(email_two, proprietary_terms))
+print(censor(email_three, proprietary_terms, negative_words))
+print(censor(email_four, proprietary_terms, negative_words, all=True))
