@@ -39,6 +39,25 @@ def plot_n_rank(n, df_ranking):
     plt.gca().invert_yaxis()
     plt.show()
 
+
+def hist_numeric_column(column_name, df_coaster):
+    df_res = df_coaster[column_name].dropna()
+    plt.hist(df_res)
+    plt.title('Histogram of Roller Coaster {}'.format(column_name))
+    plt.xlabel('{}'.format(column_name))
+    plt.show()
+
+
+def bar_num_inversions(park_name, df_coaster):
+    coasters = df_coaster[df_coaster['park'] == park_name]
+    coasters = coasters.sort_values('num_inversions', ascending=False)
+    plt.bar(coasters['name'], coasters['num_inversions'])
+    plt.xticks(rotation='vertical')
+    plt.ylabel('Number of inversions')
+    plt.title('Number of inversions per coaster at {}'.format(park_name))
+    plt.show()
+
 # ==============================================================
 # MAIN CALLS
 # ==============================================================
+bar_num_inversions('Parc Asterix', roller_coasters)
