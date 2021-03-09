@@ -11,6 +11,8 @@ togepi = pokemon.Pokemon("Togepi", 50, "Grass", 230)
 staryu = pokemon.Pokemon("Staryu", 47, "Water", 210)
 misty_pokemon = [togepi, staryu]
 
+# Trainers
 ash = trainer.Trainer("Ash", ash_pokemon, 0, 1)
 misty = trainer.Trainer("Misty", misty_pokemon, 1, 2)
 
+# Actions
