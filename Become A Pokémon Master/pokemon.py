@@ -1,25 +1,29 @@
 class Pokemon:
 
-    def __init__(self, name, level, element, max_hp, curr_hp):
+    def __init__(self, name, level, element, max_hp):
         self.name = name
         self.level = level
         self.element = element
         self.max_hp = max_hp
-        self.curr_hp = curr_hp
+        # The current HP is max at init. To set it, use set_curr_hp()
+        self.curr_hp = max_hp
         self.is_knocked_out = False
+
+    def set_curr_hp(self, curr_hp):
+        self.curr_hp = curr_hp
 
     def lose_health(self, hp_loss):
         self.curr_hp -= hp_loss
         print(f"{self.name} took {hp_loss} damage.")
         if self.curr_hp < 0:
-            self.curr_hp = 0
+            self.set_curr_hp(0)
             self.knocked_out()
 
     def gain_health(self, hp_gained):
         self.curr_hp += hp_gained
         print(f"{self.name} gained {hp_gained} HP.")
         if self.curr_hp > self.max_hp:
-            self.curr_hp = self.max_hp
+            self.set_curr_hp(self.max_hp)
 
     def knocked_out(self):
         self.is_knocked_out = True
